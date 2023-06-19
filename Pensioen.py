@@ -1,30 +1,29 @@
-""""
-def berekening(leeftijd):
-    if leeftijd<65:
-        uitvoer="U moet nog",65-leeftijd,"jaar tot uw pensioen"
+def pensioen(status,leeftijd): # berekent je pensioen
+    # Check leeftijd
+    if leeftijd < 65:
+        uitvoer = f"U mag nog {65-leeftijd} jaar werken tot uw pensioen"
+        return uitvoer
     else:
-        if leeftijd>=70:
-            uitvoer=2
+        if leeftijd > 69:   # als je  ouder bent dan 70 krig je meer pensien en daarvoor moet je verder in de list.
+            lf=3        
         else:
-            uitvoer=1
-    return uitvoer
-"""
-
-def basis(status):        # kijkt wat je basisuitekring is
+            lf=0
+    # check de werkstatuut
     if status == "z":
-        uitvoer=uitkering[0]
+        uitvoer = f"U krijgt voor € {uitkering[0+lf]} per week aan pensioen"
     else:
         if status == "m":
-            uitvoer=uitkering[1]
+            uitvoer = f"U krijgt voor € {uitkering[1+lf]} per week aan pensioen"
         else:
-            uitvoer=uitkering[2]
+            uitvoer = f"U krijgt voor € {uitkering[2+lf]} per week aan pensioen"
     return uitvoer
-    
-uitkering=[300,350,370]
+
+uitkering=[300,350,370,315,370,395]   # de uitkeringsbedragen in de volgorde zelfstandig, medewerker, ambtenaar, en daarachter als ze 70+ zijn
 
 leeftijd=int(input("Wat is u Leeftijd? "))
 print("Wat is u staat van dienst?")
-werkstatuut=(input("Voer in: (m)edewerker, (z)zelfstandige of (a)mbtenaar: "))
+werkstatuut=(input("Voer in: (m)edewerker, (z)elfstandige of (a)mbtenaar: "))
 print()
-print("U krijgt voor",basis(werkstatuut)," euro aan pensioen")
+print()
+print(pensioen(werkstatuut,leeftijd))
 
